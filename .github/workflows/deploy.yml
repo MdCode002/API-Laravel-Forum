@@ -33,5 +33,5 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H IP_DU_SERVEUR >> ~/.ssh/known_hosts
-          ssh laraveluser@IP_DU_SERVEUR 'cd /home/laraveluser/web/tonsite.com && git pull origin main && composer install && php artisan migrate'
+          ssh-keyscan -H 54.37.50.251 >> ~/.ssh/known_hosts
+          ssh baggo-test@54.37.50.251 'cd /home/baggo-tes/web/mdsoftdevtest.site && git pull origin main && composer install && php artisan migrate'
