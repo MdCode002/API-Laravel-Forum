@@ -32,3 +32,4 @@ Route::post('feed/like/{feed_id}', [FeedController::class, 'likePost'])->middlew
 Route::post('feed/comment/{feed_id}', [FeedController::class, 'comment'])->middleware('auth:sanctum');
 Route::get('feed/comments/{feed_id}', [FeedController::class, 'getComments'])->middleware('auth:sanctum');
 Route::get('feeds', [FeedController::class, 'index'])->middleware('auth:sanctum');
+Route::get('feeds/search', [FeedController::class, 'search'])->middleware('auth:sanctum');
