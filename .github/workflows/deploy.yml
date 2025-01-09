@@ -26,12 +26,11 @@ jobs:
           php artisan route:cache
           php artisan view:cache
 
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Deploy to server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 54.37.50.251 >> ~/.ssh/known_hosts
-          ssh baggo-test@54.37.50.251 'cd /home/baggo-test/web/mdsoftdevtest.site && git pull origin main && composer install && php artisan migrate'
+          ssh -o StrictHostKeyChecking=no baggo-test@54.37.50.251 'cd /home/baggo-test/web/mdsoftdevtest.site && git pull origin main && composer install && php artisan migrate'
