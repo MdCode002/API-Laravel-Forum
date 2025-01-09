@@ -28,6 +28,6 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh baggo-test@54.37.50.251 'cd /home/baggo-test/web/mdsoftdevtest.site && git pull origin main && composer install && php artisan migrate'
+          ssh -v baggo-test@54.37.50.251 'cd /home/baggo-test/web/mdsoftdevtest.site && git pull origin main && composer install && php artisan migrate'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
